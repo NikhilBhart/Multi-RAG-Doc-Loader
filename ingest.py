@@ -13,8 +13,14 @@ CHUNK_OVERLAP = 120
 
 
 def extract_text(uploaded_file) -> str:
+    print("DEBUG object type:", type(uploaded_file))
+    print("DEBUG object name:", repr(getattr(uploaded_file, "name", None)))
     """uploaded_file is a Streamlit UploadedFile."""
     name = uploaded_file.name.lower()
+
+    # raise ValueError(
+    # f"Unsupported file type. Filename={uploaded_file.name!r}"
+    # )
 
     if name.endswith(".pdf"):
         reader = PdfReader(uploaded_file)
@@ -43,6 +49,9 @@ def chunk_text(text: str, chunk_size: int = CHUNK_SIZE, overlap: int = CHUNK_OVE
 
 
 def ingest_file(collection, uploaded_file) -> int:
+    print("DEBUG collection type:", type(collection))
+    print("DEBUG uploaded_file:", repr(getattr(uploaded_file, "name", None)))
+
     """Parses, chunks, embeds and stores one uploaded file. Returns chunk count."""
     text = extract_text(uploaded_file)
     chunks = chunk_text(text)

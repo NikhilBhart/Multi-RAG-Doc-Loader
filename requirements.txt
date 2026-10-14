@@ -6,3 +6,7 @@ python-dotenv>=1.0
 pypdf>=4.3
 python-docx>=1.1
 duckduckgo-search>=6.0   # used by CRAG's web-search fallback - no API key needed
+torch
+torchvision
+fonttools
+groq 

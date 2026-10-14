@@ -1,4 +1,6 @@
-"""Maps the sidebar's mode selection to the matching strategy module."""
+
+"""Maps retrieval modes to their strategy modules."""
+
 from strategies import naive, crag, self_rag
 
 STRATEGIES = {
@@ -8,8 +10,24 @@ STRATEGIES = {
 }
 
 
-def run(mode: str, collection, query: str) -> dict:
+def run(
+    mode: str,
+    collection,
+    query: str,
+    *,
+    provider: str,
+    model: str,
+    api_key: str,
+) -> dict:
     strategy = STRATEGIES.get(mode)
+
     if strategy is None:
         raise ValueError(f"Unknown RAG mode: {mode}")
-    return strategy.run(collection, query)
+
+    return strategy.run(
+        collection,
+        query,
+        provider=provider,
+        model=model,
+        api_key=api_key,
+    )
