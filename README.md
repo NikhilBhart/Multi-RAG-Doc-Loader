@@ -49,3 +49,6 @@ strategies/
   which needs no API key. It's an unofficial endpoint, so it can occasionally
   rate-limit or fail — if that happens, CRAG fails soft and just answers from
   the retrieved chunks, same as graded naive RAG.
+
+Website:
+https://multi-rag-doc-loader.streamlit.app/
